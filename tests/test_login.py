@@ -19,6 +19,8 @@ class TestLogin(unittest.TestCase):
 
     def test_valid_login(self):
         self.login_page.login("standard_user", "secret_sauce")
+        print("Login efetuado com sucesso!") 
+
         self.assertTrue(self.login_page.is_login_successful(), "Login falhou!")
 
     def tearDown(self):

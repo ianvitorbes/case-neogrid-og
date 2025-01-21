@@ -15,7 +15,7 @@ class TestAddToCart:
         # Inicializando driver do navegador
         chrome_service = Service("C:\\WebDriver\\chromedriver.exe")
         self.driver = webdriver.Chrome(service=chrome_service)
-        self.driver.get("https://www.saucedemo.com/")  # Acesso à página de login
+        self.driver.get("https://www.saucedemo.com/")
         
         # Iniciando as páginas
         self.login_page = LoginPage(self.driver)
@@ -25,22 +25,24 @@ class TestAddToCart:
         # Fazendo login
         self.login_page.login("standard_user", "secret_sauce")
 
-        # Verificação de login bem sucedido 
+        # Verificação de login
         assert self.login_page.is_login_successful(), "Login falhou!"
 
         # Acessando a página de produtos
         assert self.product_page.is_product_page(), "Página de produtos não carregada!"
 
-        # Seleciona um produto e adiciona ao carrinho
+        # Adiciona um produto ao carrinho e verifica se realmente foi adicionado
         self.product_page.add_product_to_cart()
-
-        # Verifica se o produto foi adicionado ao carrinho
         cart_count = self.product_page.get_cart_item_count()
+
         assert cart_count == "1", "Produto não foi adicionado ao carrinho!"
+        
+        # Mensagem indicando que o produto foi adicionado ao carrinho
+        print("Produto adicionado ao carrinho!")
 
     def tearDown(self):
         # Espera para poder ver o resultado do teste
-        time.sleep(2)
+        time.sleep(5)
         self.driver.quit()
 
 # Executa o teste

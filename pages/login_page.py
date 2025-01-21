@@ -16,46 +16,35 @@ class LoginPage:
         self.page_title = "Swag Labs"  # Título da página que deve ser carregada após login bem-sucedido
 
     def enter_username(self, username):
-        """
-        Inserção de usuário no campo de login.
-        """
+        # Inserção de dados de login
         username_input = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(self.username_field)
         )
         username_input.send_keys(username)
 
     def enter_password(self, password):
-        """
-        Inserção de senha no campo de login.
-        """
+       # Inserção de dados de login
         password_input = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located(self.password_field)
         )
         password_input.send_keys(password)
 
     def click_login(self):
-        """
-        Clica no botão de login.
-        """
+        # Click no botão de login
         login_button = WebDriverWait(self.driver, 10).until(
             EC.element_to_be_clickable(self.login_button)
         )
         login_button.click()
 
     def is_login_successful(self):
-        """
-        Verifica se o login foi bem-sucedido.
-        Retorna True se o título da página contiver 'Swag Labs'.
-        """
+        # Verificando se o login foi bem sucedido 
         WebDriverWait(self.driver, 10).until(
             EC.title_contains(self.page_title)
         )
         return True
 
     def is_login_error(self):
-        """
-        Verifica se ocorreu um erro no login, retornando True se a mensagem de erro for exibida.
-        """
+        # Verificação de erro no login
         try:
             WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located(self.error_message)
@@ -65,9 +54,7 @@ class LoginPage:
             return False
 
     def login(self, username, password):
-        """
-        Método completo para realizar o login.
-        """
+        # Metodo utilizado para fazer o login
         self.enter_username(username)
         self.enter_password(password)
         self.click_login()

@@ -37,5 +37,5 @@ python tests/test_remove_product_from_cart.py
 python tests/test_checkout.py
 
 5. Teste de Ordenação de Produtos:
-   
+python tests/test_sort_products.py   
 

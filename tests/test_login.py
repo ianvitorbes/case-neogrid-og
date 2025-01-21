@@ -1,39 +1,29 @@
+import sys
+import os
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'pages')))
+
+from login_page import LoginPage
 
 class TestLogin(unittest.TestCase):
-
     def setUp(self):
-        # Inicializa o chromedriver com o caminho do serviço
         chrome_service = Service("C:\\WebDriver\\chromedriver.exe")
         self.driver = webdriver.Chrome(service=chrome_service)
+        self.driver.get("https://www.saucedemo.com/")
+
+        self.login_page = LoginPage(self.driver)
 
     def test_valid_login(self):
-        driver = self.driver
-        driver.get("https://www.saucedemo.com/")
-
-        # Inserir credenciais
-        username = driver.find_element(By.ID, "user-name")
-        username.send_keys("standard_user")
-        
-        password = driver.find_element(By.ID, "password")
-        password.send_keys("secret_sauce")
-        
-        # Clicar no botão de login
-        login_button = driver.find_element(By.ID, "login-button")
-        login_button.click()
-
-        # Verificar se o login foi bem-sucedido
-        assert "Swag Labs" in driver.title
-
-        # Espera que o usuário pressione Enter para fechar
-        input("Pressione Enter para fechar o navegador...")
+        self.login_page.login("standard_user", "secret_sauce")
+        self.assertTrue(self.login_page.is_login_successful(), "Login falhou!")
 
     def tearDown(self):
-        # Fechar o navegador após o teste
+        #Pressionar enter para fechar o navegador
+        input("Pressione Enter para fechar o navegador...") 
         self.driver.quit()
 
 if __name__ == "__main__":

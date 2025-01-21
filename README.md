@@ -1,28 +1,41 @@
 Criei um segundo projeto seguindo os padrões (Page Object Model). Não utilizarei mais o primeiro, pois não estava no padrão POM de testes.
 
-Teste de Login - Sauce Labs Demo
+Case de Testes Neogrid
 
-Este repositório contém um teste automatizado para validar o fluxo de login na aplicação Sauce Labs Demo. O teste é realizado utilizando o Selenium com Python.
+Este projeto contém testes automatizados utilizando Selenium WebDriver para o site **Sauce Demo**. Os testes abordam funcionalidades como login, adição de produtos ao carrinho, checkout, e remoção de produtos do carrinho.
 
-Tecnologias Utilizadas
+## Pré-requisitos
 
-Python: Linguagem de programação utilizada para escrever os testes automatizados.
-Selenium WebDriver: Ferramenta para automação de navegação em navegadores, utilizada para interagir com a interface da aplicação.
-ChromeDriver: Driver utilizado para interagir com o navegador Google Chrome durante os testes automatizados.
-Requisitos
+Antes de rodar os testes, certifique-se de ter os seguintes pré-requisitos instalados:
 
-Este case foi desenvolvido e testado em um ambiente com as seguintes versões:
+- Python 3.x
+- Pip
+- Google Chrome
+- ChromeDriver compatível com sua versão do Chrome
 
-Python: Versão 3.x
-Selenium WebDriver: Versão 4.x
-ChromeDriver: Compatível com a versão do Google Chrome instalada.
-Como Rodar os Testes
+### Instalação do ChromeDriver
+1. Baixe o [ChromeDriver](https://sites.google.com/chromium.org/driver/) adequado para sua versão do Google Chrome.
+2. Coloque o ChromeDriver em um diretório de sua escolha (exemplo: `C:\WebDriver\chromedriver.exe`) ou configure o caminho diretamente no código de teste.
 
-Passo 1: Rodar o Teste de Login
+### Instalação de dependências
+Instale as dependências do projeto com o seguinte comando:
+- pip install -r requirements.txt
 
-Crie um arquivo Python (ou baixe o arquivo já pronto) com o código do teste de login:
+Executando os Testes
+Os testes estão organizados em arquivos separados. Para executar um teste específico, use o seguinte comando:
 
-Nome do arquivo: teste_login_saucedemo.py.
-Execute o teste: Abra o terminal (ou o terminal do VS Code) e navegue até o diretório onde o arquivo Python está localizado.
+1. Teste de Login:
+python tests/test_login.py
 
-No terminal, execute o comando:
+2. Teste de Adicionar Produto ao Carrinho:
+python tests/test_add_to_cart.py
+
+3. Teste de Remover Produto do Carrinho:
+python tests/test_remove_product_from_cart.py
+
+4. Teste de Realizar Checkout:
+python tests/test_checkout.py
+
+5. Teste de Ordenação de Produtos:
+python tests/test_sort_products.py   
+

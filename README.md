@@ -11,8 +11,11 @@ O projeto segue os padrões do Page Object Model (POM), onde cada página do sit
 Antes de rodar os testes, é necessário ter os seguintes pré-requisitos instalados:
 
 Python 3.x: A versão mais recente do Python 3.
+
 Pip: Gerenciador de pacotes do Python.
+
 Google Chrome: Navegador para execução dos testes.
+
 ChromeDriver: Driver para interação com o Chrome, compatível com a versão do seu navegador.
 
 ### Instalação do ChromeDriver

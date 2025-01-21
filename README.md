@@ -1,4 +1,4 @@
-**Case de Testes Neogrid**
+## Case de Testes Neogrid
 
 Criei um projeto seguindo os padrões do Page Object Model (POM), que contém testes automatizados utilizando Selenium WebDriver para o site Sauce Demo. O projeto abrange funcionalidades como login, adição de produtos ao carrinho, checkout, remoção de produtos do carrinho e ordenação de produtos.
 

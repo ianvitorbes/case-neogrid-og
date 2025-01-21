@@ -10,7 +10,7 @@ class ProductPage:
     def __init__(self, driver):
         self.driver = driver
         self.page_title = "Swag Labs"  # Título da página que aparece após login bem-sucedido
-
+        
         # Elementos da página
         self.username_field = (By.ID, "user-name")
         self.password_field = (By.ID, "password")
@@ -18,8 +18,16 @@ class ProductPage:
         self.add_to_cart_button = (By.ID, "add-to-cart-sauce-labs-backpack")
         self.cart_badge = (By.CLASS_NAME, "shopping_cart_badge")
 
-    def login(self, username, password):
+        # Elementos do checkout
+        self.checkout_button = (By.CLASS_NAME, "checkout_button")
+        self.first_name_field = (By.ID, "first-name")
+        self.last_name_field = (By.ID, "last-name")
+        self.zip_code_field = (By.ID, "postal-code")  # Campo para CEP
+        self.continue_button = (By.XPATH, "//input[@value='Continue']")
+        self.finish_button = (By.XPATH, "//button[@name='finish']")
+        self.order_complete_message = (By.CLASS_NAME, "complete-header")
 
+    def login(self, username, password):
         # Fazendo login com os dados fornecidos
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(self.username_field))
         self.driver.find_element(*self.username_field).send_keys(username)
@@ -27,7 +35,7 @@ class ProductPage:
         self.driver.find_element(*self.login_button).click()
 
     def is_product_page(self):
-        # Verificação de login através do titulo da página
+        # Verificação de login através do título da página
         WebDriverWait(self.driver, 10).until(
             EC.title_contains(self.page_title)
         )
@@ -41,7 +49,7 @@ class ProductPage:
         add_to_cart_button.click()
 
     def get_cart_item_count(self):
-        # Retornando numero de itens do carrinho para fazer a verificação
+        # Retornando número de itens no carrinho para fazer a verificação
         try:
             cart_count = WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located(self.cart_badge)
@@ -55,7 +63,7 @@ class ProductPage:
         return int(self.get_cart_item_count()) > 0
 
     def navigate_to_cart(self):
-       # Navegando ate o carrinho de compras
+        # Navegando até o carrinho de compras
         cart_button = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, "shopping_cart_link"))
         )
@@ -67,3 +75,41 @@ class ProductPage:
             EC.element_to_be_clickable((By.ID, "remove-sauce-labs-backpack"))
         )
         remove_button.click()
+
+    def start_checkout(self):
+        # Iniciando o processo de checkout
+        checkout_button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.checkout_button)
+        )
+        checkout_button.click()
+
+    def fill_checkout_details(self, first_name, last_name, zip_code):
+        # Preenchendo os dados do usuário para o checkout
+        WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located(self.first_name_field)
+        )
+        self.driver.find_element(*self.first_name_field).send_keys(first_name)  # Corrigido para send_keys
+        self.driver.find_element(*self.last_name_field).send_keys(last_name)
+        self.driver.find_element(*self.zip_code_field).send_keys(zip_code)  # Preenchendo o campo do CEP
+
+    def continue_checkout(self):
+        # Clicando no botão de continuar
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.continue_button)
+        ).click()
+
+    def finish_checkout(self):
+        # Finalizando o checkout
+        WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable(self.finish_button)
+        ).click()
+
+    def is_checkout_complete(self):
+        # Verificando se a compra foi concluída com sucesso
+        try:
+            WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located(self.order_complete_message)
+            )
+            return True
+        except:
+            return False

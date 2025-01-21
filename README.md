@@ -29,7 +29,9 @@ pip install -r requirements.txt
 
 ## Executando os Testes
 
-Os testes estão organizados em arquivos separados, de modo que você pode executar testes específicos de forma independente. Para rodar um teste, utilize o comando abaixo no terminal:
+Os testes estão organizados em arquivos separados, de modo que você pode executar testes específicos de forma independente. Para rodar um teste, utilize os comandos abaixo no terminal (recomendado usar o terminal do sistema ou o terminal integrado do VS Code):
+
+Executar o comando: No terminal, navegue até o diretório raiz do projeto (onde o arquivo requirements.txt está localizado) e execute o comando para o teste desejado:
 
 1. **Teste de Login:**
 python tests/test_login.py

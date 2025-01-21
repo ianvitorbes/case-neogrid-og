@@ -1,41 +1,47 @@
-Criei um segundo projeto seguindo os padrões (Page Object Model). Não utilizarei mais o primeiro, pois não estava no padrão POM de testes.
+Criei um projeto seguindo os padrões (Page Object Model). 
 
-Case de Testes Neogrid
+**Case de Testes Neogrid**
 
-Este projeto contém testes automatizados utilizando Selenium WebDriver para o site **Sauce Demo**. Os testes abordam funcionalidades como login, adição de produtos ao carrinho, checkout, e remoção de produtos do carrinho.
+Este projeto contém testes automatizados utilizando Selenium WebDriver para o site Sauce Demo. Os testes abordam funcionalidades como login, adição de produtos ao carrinho, checkout, remoção de produtos do carrinho e ordenação de produtos.
+
+## Padrões do Projeto
+
+O projeto segue os padrões do Page Object Model (POM), onde cada página do site é representada por uma classe que encapsula seus elementos e ações.
 
 ## Pré-requisitos
 
-Antes de rodar os testes, certifique-se de ter os seguintes pré-requisitos instalados:
+Antes de rodar os testes, é necessário ter os seguintes pré-requisitos instalados:
 
-- Python 3.x
-- Pip
-- Google Chrome
-- ChromeDriver compatível com sua versão do Chrome
+Python 3.x: A versão mais recente do Python 3.
+Pip: Gerenciador de pacotes do Python.
+Google Chrome: Navegador para execução dos testes.
+ChromeDriver: Driver para interação com o Chrome, compatível com a versão do seu navegador.
 
 ### Instalação do ChromeDriver
 1. Baixe o [ChromeDriver](https://sites.google.com/chromium.org/driver/) adequado para sua versão do Google Chrome.
-2. Coloque o ChromeDriver em um diretório de sua escolha (exemplo: `C:\WebDriver\chromedriver.exe`) ou configure o caminho diretamente no código de teste.
+2. Coloque o ChromeDriver em um diretório de sua escolha (por exemplo, C:\WebDriver\chromedriver.exe), ou altere o caminho no código de teste para o local onde o arquivo foi salvo
 
 ### Instalação de dependências
+
 Instale as dependências do projeto com o seguinte comando:
-- pip install -r requirements.txt
+pip install -r requirements.txt
 
-Executando os Testes
-Os testes estão organizados em arquivos separados. Para executar um teste específico, use o seguinte comando:
+## Executando os Testes
 
-1. Teste de Login:
+Os testes estão organizados em arquivos separados, de modo que você pode executar testes específicos de forma independente. Para rodar um teste, utilize o comando abaixo no terminal:
+
+1. **Teste de Login:**
 python tests/test_login.py
 
-2. Teste de Adicionar Produto ao Carrinho:
+2. **Teste de Adicionar Produto ao Carrinho:**
 python tests/test_add_to_cart.py
 
-3. Teste de Remover Produto do Carrinho:
+3. **Teste de Remover Produto do Carrinho:**
 python tests/test_remove_product_from_cart.py
 
-4. Teste de Realizar Checkout:
+4. **Teste de Realizar Checkout:**
 python tests/test_checkout.py
 
-5. Teste de Ordenação de Produtos:
+5. **Teste de Ordenação de Produtos:**
 python tests/test_sort_products.py   
 

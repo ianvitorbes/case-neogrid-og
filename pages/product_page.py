@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import Select
 import sys
 import os
 
@@ -113,3 +114,13 @@ class ProductPage:
             return True
         except:
             return False
+
+    # Novo método para ordenar produtos
+    def sort_products_by(self, value):
+    
+        #Função que seleciona o critério de ordenação no menu suspenso (dropdown)
+        sort_dropdown = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "product_sort_container"))
+        )
+        select = Select(sort_dropdown)
+        select.select_by_value(value)
